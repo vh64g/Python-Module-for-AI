@@ -9,18 +9,22 @@ class artificialNeuralNetwork:
 
         self.out = []
 
+        self.randomize()
+
     def randomize(self):
         for layer in self.hidden_layers:
-            for neuron in self.hidden_layers[layer]:
+            for neuron in self.hidden_layers[0]:
                 neuron.randomize(len(self.input_layer))
         for neuron in self.output_layer:
-            neuron.randomize(len(self.input_layer))
-        return
+            neuron.randomize(len(self.hidden_layers[-1]))
 
-    def calc(self):
+    def calc(self, inputs):
+        self.input_layer = inputs
         for layer in self.hidden_layers:
-            for neuron in self.hidden_layers[layer]:
+            for neuron in self.hidden_layers[0]:
                 x = neuron.calc(self.input_layer)
         for neuron in self.output_layer:
-            self.out.append(neuron.calc(self.hidden_layers[-1]))
-        return
+            middle_outs = [neuron.output for neuron in self.hidden_layers[-1]]
+            print(f"middle_outs: {middle_outs}")
+            self.out.append(neuron.calc(middle_outs))
+        return self.out

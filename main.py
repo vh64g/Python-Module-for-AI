@@ -1,15 +1,12 @@
-# This is a sample Python script.
-
-# Press Umschalt+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Strg+F8 to toggle the breakpoint.
+from ai import neuralNetwork
+from ai import neuron
+from ai.training import randomValueTraining
 
 
-# Press the green button in the gutter to run the script.
+def main():
+    ann = neuralNetwork.artificialNeuralNetwork(input_layer=[0, 0], output_layer=[neuron.neuron() for i in range(1)], hidden_layers=[[neuron.neuron() for i in range(5)]])
+    rvt = randomValueTraining.rVT01(ann, [[[1, 0], [1]]], epochs=20000, learning_rate=0.1)
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    main()

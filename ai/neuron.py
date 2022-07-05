@@ -5,7 +5,7 @@ import random
 class neuron:
     def __init__(self):
         self.weights = []
-        self.bias = 0
+        self.bias = 1
         self.output = 0
 
     def randomize(self, input_count, min_val=-1, max_val=1, weights=None, bias=None):
@@ -19,6 +19,7 @@ class neuron:
     def calc(self, inputs):
         self.output = 0
         for i in range(len(inputs)):
+            print(f"Inputs: {inputs}, weights: {self.weights} i: {i}")
             self.output += inputs[i] * self.weights[i]
         self.output += self.bias
         self.output = 1 / (1 + math.exp(-self.output))

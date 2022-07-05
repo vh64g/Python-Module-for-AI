@@ -11,13 +11,17 @@ class rVT01:
 
     def train(self):
         for i in range(self.epochs):
-            self.train_epoch()
+            self.train_epoch(i)
 
-    def train_epoch(self):
+    def train_epoch(self, epoch):
         for data in self.training_data:
-            self.train_data(data)
+            self.train_data(data, epoch)
 
-    def train_data(self, data):
-        for layer in self.neural_network.hidden_layers:
-            for neuron in self.neural_network.hidden_layers[layer]:
-                neuron.randomize()
+    def train_data(self, data, epoch):
+        result = self.neural_network.calc(data[0])
+        expected = data[1]
+        print(f"Training: Epoch: {epoch}, Result: {result}, Expected: {expected}")
+        if result != expected:
+            for layer in self.neural_network.hidden_layers:
+                for neuron in self.neural_network.hidden_layers[0]:
+                    neuron.randomize(len(self.neural_network.input_layer), -1*self.learning_rate, 1*self.learning_rate, neuron.weights, neuron.bias)
