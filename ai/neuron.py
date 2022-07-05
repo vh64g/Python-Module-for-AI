@@ -12,14 +12,13 @@ class neuron:
         self.weights = []
         for i in range(input_count):
             if weights is None: self.weights.append(random.uniform(min_val, max_val))
-            else: self.weights.append(weights[i]*random.uniform(min_val, max_val))
+            else: self.weights.append(weights[i]+random.uniform(min_val, max_val))
         if bias is None: self.bias = random.uniform(min_val, max_val)
-        else: self.bias = bias*random.uniform(min_val, max_val)
+        else: self.bias = bias+random.uniform(min_val, max_val)
 
     def calc(self, inputs):
         self.output = 0
         for i in range(len(inputs)):
-            print(f"Inputs: {inputs}, weights: {self.weights} i: {i}")
             self.output += inputs[i] * self.weights[i]
         self.output += self.bias
         self.output = 1 / (1 + math.exp(-self.output))

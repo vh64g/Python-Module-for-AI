@@ -1,5 +1,5 @@
 class rVT01:
-    def __init__(self, neural_network, training_data, epochs=20000, learning_rate=0.1):
+    def __init__(self, neural_network, training_data, epochs=20000, learning_rate=.1):
 
         self.neural_network = neural_network
 

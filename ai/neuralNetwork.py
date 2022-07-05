@@ -20,11 +20,11 @@ class artificialNeuralNetwork:
 
     def calc(self, inputs):
         self.input_layer = inputs
+        self.out = []
         for layer in self.hidden_layers:
             for neuron in self.hidden_layers[0]:
                 x = neuron.calc(self.input_layer)
         for neuron in self.output_layer:
             middle_outs = [neuron.output for neuron in self.hidden_layers[-1]]
-            print(f"middle_outs: {middle_outs}")
             self.out.append(neuron.calc(middle_outs))
         return self.out
