@@ -5,7 +5,7 @@ class artificialNeuralNetwork:
         self.hidden_layers = hidden_layers  # structure of hidden layers: [[layer1_neurons], [layer2: neurons, ...]
         self.output_layer = output_layer  # structure of output layer: [neuron1, neuron2, ...]
 
-        if hidden_layers is None: self.hidden_layers = {}
+        if hidden_layers is None: self.hidden_layers = []
 
         self.out = []
 
@@ -13,8 +13,12 @@ class artificialNeuralNetwork:
 
     def randomize(self):
         for layer in self.hidden_layers:
-            for neuron in self.hidden_layers[0]:
-                neuron.randomize(len(self.input_layer))
+            if self.hidden_layers.index(layer) == 0:
+                for neuron in self.hidden_layers[self.hidden_layers.index(layer)]:
+                    neuron.randomize(len(self.input_layer))
+            else:
+                for neuron in self.hidden_layers[self.hidden_layers.index(layer)]:
+                    neuron.randomize(len(self.hidden_layers[self.hidden_layers.index(layer) - 1]))
         for neuron in self.output_layer:
             neuron.randomize(len(self.hidden_layers[-1]))
 
@@ -22,8 +26,9 @@ class artificialNeuralNetwork:
         self.input_layer = inputs
         self.out = []
         for layer in self.hidden_layers:
-            for neuron in self.hidden_layers[0]:
-                x = neuron.calc(self.input_layer)
+            for neuron in self.hidden_layers[self.hidden_layers.index(layer)]:
+                if self.hidden_layers.index(layer) == 0: x = neuron.calc(self.input_layer)
+                else: x = neuron.calc([neuron.output for neuron in self.hidden_layers[self.hidden_layers.index(layer) - 1]])
         for neuron in self.output_layer:
             middle_outs = [neuron.output for neuron in self.hidden_layers[-1]]
             self.out.append(neuron.calc(middle_outs))
