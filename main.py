@@ -5,16 +5,19 @@ from ai.training import randomValueTraining
 
 def main():
     training_data = [
-        [[1], [1]],
-        [[.5], [.5]],
-        [[0], [0]]
+        [[0, 0], [0]],
+        [[0, 1], [1]],
+        [[1, 0], [1]],
+        [[1, 1], [0]]
     ]
 
     ann = neuralNetwork.artificialNeuralNetwork(
-        input_layer=[0],
+        input_layer=[0, 0],
         output_layer=[neuron.neuron() for i in range(1)],
         hidden_layers=[
-            [neuron.neuron() for i in range(1)]
+            [neuron.neuron() for i in range(5)],
+            [neuron.neuron() for i in range(10)],
+            [neuron.neuron() for i in range(5)]
         ]
     )
     rvt = randomValueTraining.rVT01(ann, training_data, epochs=2000000, learning_rate=0.1)

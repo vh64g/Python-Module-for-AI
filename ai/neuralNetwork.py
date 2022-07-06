@@ -31,5 +31,5 @@ class artificialNeuralNetwork:
                 else: x = neuron.calc([neuron.output for neuron in self.hidden_layers[self.hidden_layers.index(layer) - 1]])
         for neuron in self.output_layer:
             middle_outs = [neuron.output for neuron in self.hidden_layers[-1]]
-            self.out.append(neuron.calc(middle_outs))
+            self.out.append(abs(neuron.calc(middle_outs)))
         return self.out

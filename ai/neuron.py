@@ -1,12 +1,22 @@
 import math
+import numpy as np
+import matplotlib.pyplot as plt
 import random
+
+
+def sigmoid(x):
+    return 1 / (1 + np.exp(-x))
+
+
+def der_sigmoid(x):
+    return sigmoid(x) * (1 - sigmoid(x))
 
 
 class neuron:
     def __init__(self):
         self.weights = []
         self.bias = 1
-        self.output = 0
+        self.output = None
 
     def randomize(self, input_count, min_val=-1, max_val=1, weights=None, bias=None):
         self.weights = []
@@ -20,6 +30,7 @@ class neuron:
         self.output = 0
         for i in range(len(inputs)):
             self.output += inputs[i] * self.weights[i]
-        self.output += self.bias
-        self.output = 1 / (1 + math.exp(-self.output))
         return self.output
+
+
+x = 1 / (1 + math.exp(-1))

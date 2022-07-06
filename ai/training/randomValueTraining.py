@@ -26,8 +26,6 @@ class rVT01:
         for data in self.training_data:
             loss_sum_all += self.train_data(data, epoch)
 
-        loss_sum_all /= len(self.training_data)
-
         if self.lowest_loss is None:  # if the loss is lower than the lowest loss
             print(f"Lowest loss: {loss_sum_all}")
             self.lowest_loss = loss_sum_all  # set the lowest loss to the current loss
@@ -51,7 +49,7 @@ class rVT01:
         return loss_sum
 
     def set_best_neural_network(self):
-        """Set the best neural network to the current neural network"""
+        """Set the current neural network to the best neural network"""
         print("----------Setting best neural network----------")
         self.neural_network = copy.deepcopy(self.best_neural_network)
         """Calculate the output of the neural network with the input data"""
