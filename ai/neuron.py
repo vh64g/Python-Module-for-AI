@@ -30,7 +30,7 @@ class neuron:
         self.output = 0
         for i in range(len(inputs)):
             self.output += inputs[i] * self.weights[i]
+        # self.output += self.bias
+        # self.output = der_sigmoid(self.output)
         return self.output
 
-
-x = 1 / (1 + math.exp(-1))

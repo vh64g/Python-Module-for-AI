@@ -20,7 +20,7 @@ def main():
             [neuron.neuron() for i in range(5)]
         ]
     )
-    rvt = randomValueTraining.rVT01(ann, training_data, epochs=2000000, learning_rate=0.1)
+    rvt = randomValueTraining.rVT01(ann, training_data, epochs=20000)
 
     while True:
         input_data = [

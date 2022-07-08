@@ -2,7 +2,7 @@ import copy
 
 
 class rVT01:
-    def __init__(self, neural_network, training_data, epochs=20000, learning_rate=.1):
+    def __init__(self, neural_network, training_data, epochs=20000):
 
         self.neural_network = neural_network
         self.best_neural_network = None
@@ -11,7 +11,6 @@ class rVT01:
 
         self.training_data = training_data
         self.epochs = epochs
-        self.learning_rate = learning_rate
 
         self.train()
 
