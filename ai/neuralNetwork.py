@@ -11,16 +11,16 @@ class artificialNeuralNetwork:
 
         self.randomize()
 
-    def randomize(self):
+    def randomize(self, min_val=-1, max_val=1):
         for layer in self.hidden_layers:
             if self.hidden_layers.index(layer) == 0:
                 for neuron in self.hidden_layers[self.hidden_layers.index(layer)]:
-                    neuron.randomize(len(self.input_layer))
+                    neuron.randomize(len(self.input_layer), min_val, max_val)
             else:
                 for neuron in self.hidden_layers[self.hidden_layers.index(layer)]:
-                    neuron.randomize(len(self.hidden_layers[self.hidden_layers.index(layer) - 1]))
+                    neuron.randomize(len(self.hidden_layers[self.hidden_layers.index(layer) - 1]), min_val, max_val)
         for neuron in self.output_layer:
-            neuron.randomize(len(self.hidden_layers[-1]))
+            neuron.randomize(len(self.hidden_layers[-1]), min_val, max_val)
 
     def calc(self, inputs):
         self.input_layer = inputs

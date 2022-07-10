@@ -1,6 +1,4 @@
-import math
 import numpy as np
-import matplotlib.pyplot as plt
 import random
 
 
@@ -14,17 +12,16 @@ def der_sigmoid(x):
 
 class neuron:
     def __init__(self):
-        self.weights = []
+        self.weights = None
         self.bias = 1
         self.output = None
 
-    def randomize(self, input_count, min_val=-1, max_val=1, weights=None, bias=None):
-        self.weights = []
+    def randomize(self, input_count, min_val=-1, max_val=1):
+        new_weights = []
         for i in range(input_count):
-            if weights is None: self.weights.append(random.uniform(min_val, max_val))
-            else: self.weights.append(weights[i]+random.uniform(min_val, max_val))
-        if bias is None: self.bias = random.uniform(min_val, max_val)
-        else: self.bias = bias+random.uniform(min_val, max_val)
+            new_weights.append(random.uniform(min_val, max_val))
+        self.bias = random.uniform(min_val, max_val)
+        self.weights = new_weights
 
     def calc(self, inputs):
         self.output = 0

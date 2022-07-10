@@ -20,11 +20,12 @@ def main():
             [neuron.neuron() for i in range(5)]
         ]
     )
-    rvt = randomValueTraining.rVT01(ann, training_data, epochs=20000)
+    rvt = randomValueTraining.rVT01(ann, training_data, epochs=80000)
 
     while True:
         input_data = [
-            float(input("Input x: "))
+            float(input("Input x: ")),
+            float(input("Input y: "))
         ]
         print(f"Output: {rvt.neural_network.calc(input_data)}")
 
