@@ -1,6 +1,5 @@
 import copy
 
-
 class rVT01:
     def __init__(self, neural_network, training_data, epochs=20000):
 

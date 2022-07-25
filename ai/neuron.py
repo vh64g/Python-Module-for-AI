@@ -1,15 +1,3 @@
-import numpy as np
-import random
-
-
-def sigmoid(x):
-    return 1 / (1 + np.exp(-x))
-
-
-def der_sigmoid(x):
-    return sigmoid(x) * (1 - sigmoid(x))
-
-
 class neuron:
     def __init__(self):
         self.weights = None
@@ -28,6 +16,5 @@ class neuron:
         for i in range(len(inputs)):
             self.output += inputs[i] * self.weights[i]
         # self.output += self.bias
-        # self.output = der_sigmoid(self.output)
         return self.output
 
