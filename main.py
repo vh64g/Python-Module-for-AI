@@ -1,6 +1,14 @@
 from ai import neuralNetwork
-from ai import neuron
+from ai import neuron as neuron
 from ai.training import randomValueTraining
+from ai.training import basicGradientDescent as basicGradientDescentTraining
+
+
+def analyze(rvt):
+    for layer in rvt.best_neural_network.hidden_layers:
+        print(f"Hidden layer: {layer}")
+        for NEURON in layer:
+            print(f"{NEURON}\n  Weights: {NEURON.weights}\n  Bias: {NEURON.bias}\n  Output: {NEURON.output}")
 
 
 def main():
@@ -13,21 +21,13 @@ def main():
 
     ann = neuralNetwork.artificialNeuralNetwork(
         input_layer=[0, 0],
-        output_layer=[neuron.neuron() for i in range(1)],
+        output_layer=[neuron.neuron() for _ in range(1)],
         hidden_layers=[
-            [neuron.neuron() for i in range(5)],
-            [neuron.neuron() for i in range(10)],
-            [neuron.neuron() for i in range(5)]
+            [neuron.neuron() for _ in range(3)]
         ]
     )
-    rvt = randomValueTraining.rVT01(ann, training_data, epochs=80000)
-
-    while True:
-        input_data = [
-            float(input("Input x: ")),
-            float(input("Input y: "))
-        ]
-        print(f"Output: {rvt.neural_network.calc(input_data)}")
+    bgd = basicGradientDescentTraining.basicGradientDescentTraining(ann, training_data, epochs=1000, learning_rate=0.2)
+    # rvt = randomValueTraining.rVT01(ann, training_data, epochs=10000)
 
 
 if __name__ == '__main__':
