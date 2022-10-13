@@ -27,6 +27,9 @@ def main():
         ]
     )
     bgd = basicGradientDescentTraining.basicGradientDescentTraining(ann, training_data, epochs=1000, learning_rate=0.2)
+    ann = bgd.network
+    res = ann.calc([[1, 0],[1]])
+    print(res)
     # rvt = randomValueTraining.rVT01(ann, training_data, epochs=10000)
 
 
