@@ -1,7 +1,10 @@
 import random
+import math
+
 
 def sigmoid(output):
-    return 1 / (1 + (2.7182818284590452353602874713527 ** -output))
+    try: return 1 / (1 + math.e ** (-output))
+    except OverflowError: return 0
 
 
 class neuron:

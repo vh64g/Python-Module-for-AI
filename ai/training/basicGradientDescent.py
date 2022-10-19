@@ -1,11 +1,18 @@
 class basicGradientDescentTraining:
-    def __init__(self, ann, training_data, epochs=1000, learning_rate=0.1):
+    def __init__(self, ann, training_data, test_data=None, epochs=1000, learning_rate=0.2, debug=False):
+        if test_data is None:
+            self.test_data = training_data
         self.network = ann
         self.training_data = training_data
         self.epochs = epochs
         self.learning_rate = learning_rate
-
+        self.debug = debug
+        if self.debug: from matplotlib import pyplot as plt
         self.run()
+
+    def debug(self):
+        # create error graph
+        pass
 
     def train(self):
         h = 0.0001
@@ -45,5 +52,5 @@ class basicGradientDescentTraining:
     def cost(self):
         cost = 0
         for data in self.training_data:
-            cost += abs(sum(self.network.calc(data[0]))) - abs(sum(data[1])) ** 2
-        return abs(cost / len(self.training_data))
+            cost += abs(sum(self.network.calc(data[0])) - abs(sum(data[1])))
+        return abs(cost/len(self.training_data))

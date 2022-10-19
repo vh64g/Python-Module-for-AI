@@ -77,6 +77,6 @@ class rVT01:
             result = self.neural_network.calc(data[0])  # calculate the output of the neural network with the input data
             expected = data[1]  # get the expected output
             lo += round(sum(loss(result, expected)), 10)
-            print(f"Final network: Loss: {round(lo, 10)}, Epoch: {self.training_epoch}, Result: {result}, Expected: {expected}")
+        print(f"Final network: Loss: {round(lo, 10)}, Epoch: {self.training_epoch}")
 
 
