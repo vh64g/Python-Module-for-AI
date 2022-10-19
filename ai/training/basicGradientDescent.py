@@ -1,3 +1,6 @@
+from matplotlib import pyplot as plt
+
+
 class basicGradientDescentTraining:
     def __init__(self, ann, training_data, test_data=None, epochs=1000, learning_rate=0.2, debug=False):
         if test_data is None:
@@ -7,12 +10,20 @@ class basicGradientDescentTraining:
         self.epochs = epochs
         self.learning_rate = learning_rate
         self.debug = debug
-        if self.debug: from matplotlib import pyplot as plt
+        self.epochsList = []
+        self.costs = []
         self.run()
 
-    def debug(self):
+    def debug_func(self):
         # create error graph
-        pass
+        fig, ax = plt.subplots()
+        ax.set_title(f"Cost of network over {self.epochs} epochs")
+        ax.grid(True)
+        ax.set_xlabel("Epoch")
+        ax.set_ylabel("Cost")
+        ax.set_xlim(0, self.epochs)
+        ax.set_ylim(0, max(self.costs))
+        ax.plot(self.epochsList, self.costs)
 
     def train(self):
         h = 0.0001
@@ -35,6 +46,8 @@ class basicGradientDescentTraining:
         neuron.bias -= h
 
     def run(self):
+        self.costs = []
+        self.epochsList = []
         for _ in range(self.epochs):
             self.train()
             for hidden_layer in self.network.hidden_layers:
@@ -46,8 +59,12 @@ class basicGradientDescentTraining:
                 for weight in neuron.weights:
                     neuron.weights[neuron.weights.index(weight)] -= self.learning_rate * neuron.costGradientWeights[neuron.weights.index(weight)]
                 neuron.bias -= self.learning_rate * neuron.costGradientBias
-
-            print(f"EPOCH: {_} | COST: {self.cost()}")
+            cost = self.cost()
+            self.costs.append(cost)
+            self.epochsList.append(_)
+            print(f"EPOCH: {_} | COST: {cost}")
+        if self.debug:
+            self.debug_func()
 
     def cost(self):
         cost = 0

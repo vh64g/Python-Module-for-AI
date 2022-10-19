@@ -3,7 +3,7 @@ import math
 
 
 def sigmoid(output):
-    try: return 1 / (1 + math.e ** (-output))
+    try: return 1 / (1 + math.exp(-output))
     except OverflowError: return 0
 
 
