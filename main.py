@@ -4,6 +4,7 @@ import pickle
 from ai import neuralNetwork
 from ai import neuron as neuron
 from ai.training import randomValueTraining
+from ai.training import threadedRandomValueTraining
 from ai.training import basicGradientDescent as basicGradientDescentTraining
 from matplotlib import pyplot as plt
 
@@ -27,7 +28,7 @@ def create_data(length=100):
 
 
 def main():
-    training_data = create_data(2000)
+    training_data = create_data(200)
     test_data = create_data(10000)
 
     ann = neuralNetwork.artificialNeuralNetwork(
@@ -38,8 +39,8 @@ def main():
         ]
     )
 
-    rvt = randomValueTraining.rVT01(ann, training_data, epochs=10000)
-    ann = rvt.best_neural_network
+    trvt = threadedRandomValueTraining.rVT01(ann, training_data, epochs=2000)
+    ann = trvt.network
     bgd = basicGradientDescentTraining.basicGradientDescentTraining(ann, training_data, test_data, epochs=1000, learning_rate=0.15, debug=True)
     ann = bgd.network
 

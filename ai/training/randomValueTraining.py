@@ -51,7 +51,7 @@ class rVT01:
 
         print(f"Training: Epoch: {epoch}, Loss: {loss_sum_all}")
 
-    def train_data(self, data, epoch):
+    def train_data(self, data):
         """Train the neural network with one data set"""
 
         result = self.neural_network.calc(data[0])  # calculate the output of the neural network with the input data
